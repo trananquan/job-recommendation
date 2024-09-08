@@ -9,4 +9,3 @@ gunicorn==20.0.4
 importlib-metadata
 setuptools
 PyPDF2
-re

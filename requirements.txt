@@ -17,8 +17,4 @@ sklearn==0.0
 threadpoolctl==2.1.0
 Werkzeug==2.0.1
 gunicorn==20.0.4
-metadata
-<<<<<<< HEAD
 importlib-metadata==8.4.0
-=======
->>>>>>> c667a4a0f5384bd26b1c67866cd6399e82259e6d

@@ -22,3 +22,4 @@ metadata
 importlib-metadata==8.4.0
 =======
 >>>>>>> c667a4a0f5384bd26b1c67866cd6399e82259e6d
+setuptools==74.1.2

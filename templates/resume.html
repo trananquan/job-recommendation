@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>App tư vấn nghề nghiệp</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-image: linear-gradient(120deg, #84fab0 0%, #8fd3f4 100%);
+            color: #333;
+        }
+
+        .container {
+            max-width: 600px;
+            margin: auto;
+            padding: 20px;
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+
+        h2 {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        form {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        input[type="file"] {
+            margin-bottom: 20px;
+        }
+
+        input[type="submit"] {
+            padding: 10px 20px;
+            background-color: #4CAF50;
+            color: #fff;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        input[type="submit"]:hover {
+            background-color: #45a049;
+        }
+    </style>
+</head>
+
+<!-- Load an icon library -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<div class="navbar">
+    
+     <img class="logo" src="static\logo.png" alt="Image">
+    <a href="https://vieclamdatawave.com/"><i class="fa fa-fw fa-link"></i> Sàn việc làm DataWave</a>
+   <a href="https://vieclamdatawave.com/contact.php"><i class="fa fa-fw fa-envelope"></i> Liên hệ</a>
+  <a href="https://vieclamdatawave.com/#about"><i class="fa fa-fw fa-book"></i> Giới thiệu</a>
+  <a class="active" href="#"><i class="fa fa-fw fa-home"></i> Trang chủ</a>
+</div>
+
+<body>
+    <br>
+    <h1 class="text center" style="text-align: center; font-size: 38px; color: rgb(209, 118, 0)">Phần mềm tư vấn việc làm AI</h1>
+    <br>
+    <div class="container" style="background:#007cc4; color:white;">
+        <h2 class="text center" style="text-align: center">Tính năng đặc biệt</h2>
+        <p>App AI Tư vấn việc làm thực hiện được những công việc cơ bản, khi CV dạng file PDF được tải lên, máy sẽ tiến hành:</p>
+        <ul>
+            <li>Đưa ra tư vấn về công việc phù hợp</li>
+            <li>Gợi ý công việc liên quan</li>
+            <li>Trích chọn những từ khóa cơ bản trong CV</li>
+        </ul>
+    </div>
+    <br>
+    <div class="container" style="background:#005586;color:white;">
+        <h2>Tải lên CV của bạn</h2>
+        <form action="/pred" method="post" enctype="multipart/form-data">
+            <input type="file" name="resume" accept=".pdf, .txt" required>
+            <input type="submit" value="Xem tư vấn">
+        </form>
+
+
+        {% if message %}
+        <p class="text-center">{{message}}</p>
+        {% endif %}
+
+        {% if predicted_category %}
+        <br>
+        <hr>
+        <br>
+        <p class="text-center"><b><strong>Bạn nên chọn nghề :</strong></b> {{predicted_category}}</p>
+        <p class="text-center"><b><strong>Công việc liên quan:</strong></b> {{recommended_job}}</p>
+        <br>
+        <hr>
+        <h1 class="text-center">Thông tin cơ bản:</h1>
+        <p class="text-center"><b><strong>Tên:</strong></b> {{name}}</p>
+        <p class="text-center"><b><strong>Số điện thoại:</strong></b> {{phone}}</p>
+        <p class="text-center"><b><strong>Email:</strong></b> {{email}}</p>
+        {% if extracted_skills %}
+        <p class="text-center"><b><strong>Kỹ năng:</strong></b></p>
+        <ul class="list-unstyled text-center">
+            {% for skill in extracted_skills %}
+            <li>{{ skill }}</li>
+            {% endfor %}
+        </ul>
+        {% else %}
+        <p class="text-center">Không có kỹ năng được tìm thấy.........</p>
+        <br>
+        {% if extracted_education %}
+        <h1 class="text-center">Trình độ giáo dục:</h1>
+        <ul class="list-unstyled text-center">
+            {% for edu in extracted_education %}
+            <li>{{ edu }}</li>
+            {% endfor %}
+        </ul>
+        {% else %}
+        <p class="text-center">Không có bằng cấp được tìm thấy.........</p>
+        <br>
+        {% endif %}
+        {% endif %}
+        {% endif %}
+
+    </div>
+</body>
+
+</html>
+
+<style>
+.navbar {
+  background-color: #555;
+  overflow: auto;
+  margin-top:-10px;
+}
+
+.logo {
+    width: 100px;
+    height: 60px;
+    margin-left: 5px;
+    margin-top: 5px
+}
+
+/* Navbar links */
+.navbar a {
+  float: right;
+  text-align: center;
+  padding: 12px;
+  color: white;
+  text-decoration: none;
+  font-size: 17px;
+  margin-top: 10px;
+}
+
+/* Navbar links on mouse-over */
+.navbar a:hover {
+  background-color: #000;
+}
+
+/* Current/active navbar link */
+.active {
+  background-color: #12c986;
+  border-radius: 7px
+}
+
+/* Add responsiveness - will automatically display the navbar vertically instead of horizontally on screens less than 500 pixels */
+@media screen and (max-width: 500px) {
+  .navbar a {
+    float: none;
+    display: block;
+  }
+}
+</style>

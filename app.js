@@ -1,5 +1,5 @@
 const url = `https://job-recommendation-1.onrender.com/`; // Replace with your Render URL
-const interval = 900000; // Interval in milliseconds (900 seconds-15 minutes)
+const interval = 90000; // Interval in milliseconds (90 seconds)
 
 function reloadWebsite() {
   axios.get(url)
